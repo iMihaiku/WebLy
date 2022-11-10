@@ -1,0 +1,91 @@
+.dashboard{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+
+}
+.user_proyects_example{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 97%;
+  background-color: var(--body-color);
+  border-radius: 5px;
+  height: 90px;
+
+}
+/* -------------------------- CONTROL USER -------------------------- */
+
+.user_container{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+}
+.user_proyects {
+  background-color: black;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  padding: 5px 0;
+  gap: 5px;
+}
+.user_profile{
+  background-color: black;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user_add_proyect{
+  background-color: #fff;
+  width: 100%;
+  height: 50%;
+}
+.user_settings{
+  background-color: #fff;
+  border-top: 1px solid black;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -------------------------- CONTROL PROYECT -------------------------- */
+
+.proyect_container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.proyect_data{
+  background-color: grey;
+  width: 100%;
+  height: 64%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.proyect_log{
+  background-color: grey;
+  width: 100%;
+  height: 36%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,40 @@
+.toolbar{
+  background-color: var(--body-color);
+  position: sticky;
+  width: 100%;
+  -webkit-app-region: drag;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 35px;
+}
+.mini_logo{
+  position: relative;
+  top: 4px;
+  width:29px;
+
+}
+.toolbar__navigation-items ul{
+  height: 30px;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+.toolbar__navigation-items ul li{
+  margin: 0 1px;
+}
+.toolbar__navigation-items ul li a{
+  -webkit-app-region: no-drag;
+  color: #fff;
+  text-decoration: none;
+  padding: 4px 13px;
+  border-radius: 6px;
+}
+.toolbar__navigation-items ul li a:hover{
+  background-color: #3e4249;
+  color: #fff;
+}

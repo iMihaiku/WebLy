@@ -1,0 +1,27 @@
+.profile_img{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.profile_img img{
+  height: 80%;
+  object-fit: scale-down;
+  border-radius: 50%;
+  
+}
+.profile_name{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.profile_config{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
