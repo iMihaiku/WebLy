@@ -1,0 +1,24 @@
+.proyect_chart1{
+  width: 49%;
+  background-color: var(--body-color-tertiary);
+  height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.proyect_chart2{
+  width: 49%;
+  background-color: var(--body-color-tertiary);
+  height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.proyect_data_content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

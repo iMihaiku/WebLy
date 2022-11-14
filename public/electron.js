@@ -33,6 +33,8 @@ function createLoginWindow(){
   loginWindow = new BrowserWindow({
     width: 1240,
     height: 800,
+    minWidth: 1050,
+    minHeight: 650,
     titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: false,

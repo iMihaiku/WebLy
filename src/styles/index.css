@@ -5,6 +5,9 @@
   --text-color       : rgb(182, 182, 182);
   --light-text-color : #A0A7AC;
   --body-color : #222b33;
+  --body-color-secondary : #1a2228;
+  --body-color-tertiary : #29343c;
+  --body-color-quaternary : #373d48;
 }
 body {
   margin: 0;
@@ -18,4 +21,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+text {
+  font-size: 17px;
 }

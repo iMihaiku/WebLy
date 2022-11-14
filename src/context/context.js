@@ -3,9 +3,13 @@ import React, { useState } from 'react'
 const Context = React.createContext({})
 
 export function AppContext({ children }) {
-  const [showToolBar, setShowToolBar] = useState(false)
-  const [token, setToken] = useState(localStorage.getItem('token'))
-  return <Context.Provider value={{ showToolBar, setShowToolBar,token, setToken }}>
+  const [proyectSelected, setproyectSelected] = useState({title:"Proyecto no seleccionado", id:-1})
+  let tokenLocal = null
+  if(localStorage.getItem('token') !== null){
+    tokenLocal = {token:localStorage.getItem('token')}
+  }
+  const [token, setToken] = useState(tokenLocal)
+  return <Context.Provider value={{ token, setToken, proyectSelected, setproyectSelected }}>
     {children}
   </Context.Provider>
 }

@@ -15,17 +15,17 @@ export default function Login({ setToken }) {
     const data = new FormData(e.target)
     const email = data.get('email')
     const password = data.get('password')
-    const token = await login(email, password)
+    const response = await login(email, password)
 
-    if (token.error) {
+    if (response.error) {
       //set timer
-      setError({ visibility: 'visible', opacity: '1', message: token.error })
+      setError({ visibility: 'visible', opacity: '1', message: response.error })
       setTimeout(() => {
         setError({ visibility: 'hidden', opacity: '0' })
       }, 3200)
     } else {
-      localStorage.setItem('token', token.token)
-      setToken(token)
+      localStorage.setItem('token', response.token)
+      setToken({ token: response.token })
     }
   }
 

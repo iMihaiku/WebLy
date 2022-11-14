@@ -9,8 +9,7 @@ const login = async (username, password) => {
       email: username,
       hashpass: password
     })
-  })
-    .then((res) => res.json())
+  }).then((res) => res.json())
     .then((data) => {
       console.log(data);
       return data

@@ -23,7 +23,7 @@ function App() {
           <Route
             path="/"
             element={
-              token === null ? <Login setToken={setToken} /> : <Dashboard />
+              token === null ? <Login setToken={setToken} /> : <Dashboard token={token} />
             }
           />
           <Route
