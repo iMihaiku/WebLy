@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const Context = React.createContext({})
 
 export function AppContext({ children }) {
+  
   const [proyectSelected, setproyectSelected] = useState({title:"Proyecto no seleccionado", id:-1})
   let tokenLocal = null
   if(localStorage.getItem('token') !== null){

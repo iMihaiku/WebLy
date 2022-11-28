@@ -1,14 +1,15 @@
 import Profile from './Profile'
 import Proyect from './Proyect'
 import Icon from './Icon'
-import { createProyect, loadProyects } from '../helpers/proyects_api.js'
+import { createProyect, loadProyects, downloadWeblyFile, loadStats } from '../helpers/proyects_api.js'
 import { useEffect, useState, useContext } from 'react'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AppContext from '../context/context.js'
 
+
 export default function ControlUser({token}) {
   const context = useContext(AppContext)
-  const { proyectSelected, setproyectSelected } = context
+  const { proyectSelected , setproyectSelected } = context
 
   const [proyects, setProyects] = useState([]);
   const [newProyect, setNewProyect] = useState();
@@ -30,7 +31,8 @@ export default function ControlUser({token}) {
     setNewProyect(res);
   }
   const handleDeleteProyect = async() => {
-    await loadProyects(token.token)
+    //downloadWeblyFile(token, proyectSelected)
+    //loadStats(token, proyectSelected)
   }
   const handleSelectProyect = (e) => {
     setproyectSelected(e)

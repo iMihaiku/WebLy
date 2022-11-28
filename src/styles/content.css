@@ -17,6 +17,7 @@
   justify-content: flex-start;
 }
 .proyect_data_content{
+  height: 370px;
   display: flex;
   justify-content: center;
   align-items: center;

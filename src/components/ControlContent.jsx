@@ -5,8 +5,7 @@ import { useContext } from 'react'
 
 export default function ControlContent() {
   const context = useContext(AppContext)
-  const { proyectSelected, setproyectSelected, token } = context
-  console.log(proyectSelected);
+  const { proyectSelected, token } = context
   return (
     <div className="proyect_container">
       {proyectSelected.id !== -1 ? (

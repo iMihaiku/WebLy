@@ -46,6 +46,7 @@
   height: 30px;
 }
 .proyect_log_content{
+  
   display:flex;
   justify-content: center;
   align-items: flex-start;

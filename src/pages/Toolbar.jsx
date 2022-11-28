@@ -6,6 +6,7 @@ import AppContext from '../context/context.js'
 function Toolbar() {
   const context = useContext(AppContext)
   const { proyectSelected } = context
+
   return (
     <div className="toolbar">
       <div className="toolbar__logo">

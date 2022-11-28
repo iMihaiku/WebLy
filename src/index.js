@@ -8,12 +8,11 @@ import ToolBar from './pages/Toolbar.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <React.StrictMode>
     <AppContext>
       <HashRouter>
         <ToolBar />
         <App />
       </HashRouter>
     </AppContext>
-  </React.StrictMode>
+
 )

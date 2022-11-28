@@ -1,4 +1,4 @@
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {
   ComposedChart,
   Line,
@@ -9,62 +9,69 @@ import {
   Tooltip,
   Legend
 } from "recharts";
+import { loadStats } from "../helpers/proyects_api";
 
-const data = [
-  {
-    "name": "Page A",
-    "uv": 4000,
-    "pv": 2400,
-    "amt": 2400
-  },
-  {
-    "name": "Page B",
-    "uv": 3000,
-    "pv": 1398,
-    "amt": 2210
-  },
-  {
-    "name": "Page C",
-    "uv": 2000,
-    "pv": 9800,
-    "amt": 2290
-  },
-  {
-    "name": "Page D",
-    "uv": 2780,
-    "pv": 3908,
-    "amt": 2000
-  },
-  {
-    "name": "Page E",
-    "uv": 1890,
-    "pv": 4800,
-    "amt": 2181
-  },
-  {
-    "name": "Page F",
-    "uv": 2390,
-    "pv": 3800,
-    "amt": 2500
-  },
-  {
-    "name": "Page G",
-    "uv": 3490,
-    "pv": 4300,
-    "amt": 2100
-  }
-]
-export default function App() {
+
+export default function App({newData,id, token}) {
+  console.log(id, token);
+  const [totalData, setTotaData] = useState([])
+  useEffect(() => {
+    loadStats(id, token).then((res) => {
+      let d2 = []
+      if (res) {
+        let eventTotalCounter = 0
+        res.forEach(element => {
+          element["eventos"].forEach(e => {
+            eventTotalCounter++
+            const index = d2.findIndex(x => x.name === e.id)
+            if (index === -1) {
+              d2.push({ name: e.id, event: 1, avg: 1 })
+            }
+            if (index !== -1) {
+              d2[index].event++
+              d2[index].avg++
+            }
+          })
+        });
+        d2.forEach(element => {
+          element.avg = Math.round((element.avg/eventTotalCounter)*100)
+        });
+        console.log(d2);
+        setTotaData(d2)
+      }
+    });
+  }, [])
+
+  useEffect(() => {
+    let d2 = []
+    let counter = 0
+    newData.forEach(element => {
+      counter ++
+      const index = totalData.findIndex(x => x.name === element.name)
+      if (index === -1) {
+        d2.push({ name: element.name, event: 1, avg: 1 })
+      } else {
+        d2.push({ name: element.name, event: totalData[index].event + element.event, avg: 1 })
+      }
+    })
+    d2.forEach(element => {
+      element.avg = Math.round((element.event/counter)*100)
+    });
+    setTotaData(d2)    
+
+  }, [newData])
+
+
   return (
     <ComposedChart
       width={450}
       height={250}
-      data={data}
+      data={totalData}
       margin={{
         top: 35,
-        right: 20,
-        bottom: 20,
-        left: 20
+        right: 40,
+        bottom: 0,
+        left: 10
       }}
     >
       <CartesianGrid stroke="#f5f5f5" />
@@ -72,8 +79,8 @@ export default function App() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" barSize={20} fill="#413ea0"/>
-      <Line type="monotone" dataKey="uv" stroke="#ff7300"/>
+      <Bar dataKey="event" barSize={20} fill="#413ea0"/>
+      <Line type="monotone" dataKey="avg" stroke="#ff7300"/>
     </ComposedChart>
   );
 }
