@@ -3,7 +3,8 @@ function generateScript(tokenApi, proyectId) {
   return`
   const tokenKey = 'Bearer ${tokenApi}'
   const proyectId = ${proyectId}
-  
+  const time = 350000 // menos de 5 minutos
+
   document.addEventListener('DOMContentLoaded', async function () {
    let validation
    localStorage.getItem('validated') === 'true'
@@ -82,7 +83,7 @@ function generateScript(tokenApi, proyectId) {
      const views = JSON.parse(localStorage.getItem('views'))
      const events = JSON.parse(localStorage.getItem('events'))
      const ip = localStorage.getItem('ip')
-     Date.now() - new Date(views[0].date) > 350000 &&
+     Date.now() - new Date(views[0].date) > time &&
        (await fetch('http://localhost:3001/estadisticas/agregarEstadisticas', {
          method: 'POST',
          headers: {
@@ -102,7 +103,7 @@ function generateScript(tokenApi, proyectId) {
            localStorage.removeItem('events')
            localStorage.removeItem('ip')
          }))
-   }, 1000)
+   }, 15000)
   }
   `
 }

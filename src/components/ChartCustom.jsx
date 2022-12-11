@@ -13,7 +13,6 @@ import { loadStats } from "../helpers/proyects_api";
 
 
 export default function App({newData,id, token}) {
-  console.log(id, token);
   const [totalData, setTotaData] = useState([])
   useEffect(() => {
     loadStats(id, token).then((res) => {
@@ -40,13 +39,13 @@ export default function App({newData,id, token}) {
         setTotaData(d2)
       }
     });
-  }, [])
+  }, [id])
 
   useEffect(() => {
     let d2 = []
     let counter = 0
+    console.log(newData);
     newData.forEach(element => {
-      counter ++
       const index = totalData.findIndex(x => x.name === element.name)
       if (index === -1) {
         d2.push({ name: element.name, event: 1, avg: 1 })
@@ -54,6 +53,9 @@ export default function App({newData,id, token}) {
         d2.push({ name: element.name, event: totalData[index].event + element.event, avg: 1 })
       }
     })
+    d2.forEach(element => {
+      counter += element.event
+    });
     d2.forEach(element => {
       element.avg = Math.round((element.event/counter)*100)
     });

@@ -11,6 +11,7 @@
   box-sizing: border-box;
 }
 .signup_form_container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,4 +77,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+}
+.signup_back{
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+.signup_back svg{
+  font-size: 40px;
+  fill: white;
+  cursor: pointer;
 }

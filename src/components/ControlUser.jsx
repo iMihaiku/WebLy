@@ -1,18 +1,17 @@
 import Profile from './Profile'
 import Proyect from './Proyect'
 import Icon from './Icon'
-import { createProyect, loadProyects, downloadWeblyFile, loadStats } from '../helpers/proyects_api.js'
+import { createProyect, loadProyects, downloadWeblyFile, loadStats, deleteProyect } from '../helpers/proyects_api.js'
 import { useEffect, useState, useContext } from 'react'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AppContext from '../context/context.js'
 
 
-export default function ControlUser({token}) {
+export default function ControlUser({token, newProyect}) {
   const context = useContext(AppContext)
   const { proyectSelected , setproyectSelected } = context
 
   const [proyects, setProyects] = useState([]);
-  const [newProyect, setNewProyect] = useState();
   useEffect(() => {
     proyects.length === 0 && loadProyects(token.token).then(data => {
       data.length > 0 && setProyects(data)
@@ -20,17 +19,16 @@ export default function ControlUser({token}) {
   },);
   useEffect(() => {
     newProyect && setProyects([...proyects, newProyect]);
+    newProyect && setproyectSelected(newProyect)
   }, [newProyect]); 
 
   const handleCreateProyect = async() => {
-    const title = "Proyecto 1";
-    const description = "Descripción del proyecto 1";
-    const id = proyects.length > 0 ? proyects[proyects.length - 1].id + 1 : 1;
-    const URLDomain = "https://www.flaticon.es";
-    const res = await createProyect(id, token.token, title, description, URLDomain);
-    setNewProyect(res);
+    setproyectSelected({title:"Create a new Project", id:-2})
   }
   const handleDeleteProyect = async() => {
+    deleteProyect(token, proyectSelected)
+    setProyects(proyects.filter(proyect => proyect.id !== proyectSelected.id))
+    setproyectSelected({title:"Project unselected", id:-1})
     //downloadWeblyFile(token, proyectSelected)
     //loadStats(token, proyectSelected)
   }

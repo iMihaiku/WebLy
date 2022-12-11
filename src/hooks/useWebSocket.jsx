@@ -9,7 +9,7 @@ export default function useWebSocket( token, id ) {
       let count = 0
       setTimeout(() => {
          ws = new WebSocket(
-          `ws://localhost:3001/proyectos/cargarEstadisticas?tokenUsuario=${token}&idProyecto=${id}`
+          `ws://web-production-d709.up.railway.app/proyectos/cargarEstadisticas?tokenUsuario=${token}&idProyecto=${id}`
         )
   
         ws.onmessage = (event) => {

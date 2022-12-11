@@ -4,6 +4,11 @@ import Icon from './Icon.jsx';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function Profile() {
+  const handleSettings = () => {
+    localStorage.removeItem('token')
+    window.location.href = '/'
+  }
+
   return (
     <>
       <div className="profile_img">
@@ -14,7 +19,7 @@ export default function Profile() {
         <h4>identificador</h4>
       </div>
       <div className="profile_config">
-        <SettingsIcon fontSize="large" />
+        <SettingsIcon fontSize="large" onClick={handleSettings}/>
       </div>
     </>
   )

@@ -1,7 +1,7 @@
 import generateScript from '../media/webly2.js'
 
 const loadProyects = async (token) => {
-  const datos = await fetch(`http://localhost:3001/proyectos/cargarProyectos`, {
+  const datos = await fetch(`${process.env.REACT_APP_API_URL}/proyectos/cargarProyectos`, {
     method: 'GET',
     headers: {
       authorization: `Bearer ${token}`,
@@ -14,16 +14,34 @@ const loadProyects = async (token) => {
     })
   return datos
 }
+const deleteProyect = async (token, id) => {
 
-const createProyect = async (id, token, titulo, descripcion, URLDomain) => {
-  const datos = await fetch(`http://localhost:3001/proyectos/crear`, {
+  const datos = await fetch(`${process.env.REACT_APP_API_URL}/proyectos/borrarProyecto`, {
+    method: 'DELETE',
+    headers: {
+      authorization: `Bearer ${token.token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: id.id
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data
+    })
+  return datos
+}
+
+const createProyect = async (token, titulo, descripcion, URLDomain) => {
+  console.log(token, descripcion, URLDomain);
+  const datos = await fetch(`${process.env.REACT_APP_API_URL}/proyectos/crear`, {
     method: 'POST',
     headers: {
       authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      id: id,
       titulo: titulo,
       descripcion: descripcion,
       URLDomain: URLDomain
@@ -38,7 +56,7 @@ const createProyect = async (id, token, titulo, descripcion, URLDomain) => {
 }
 const loadLogs = async (token, id) => {
   const datos = await fetch(
-    `http://localhost:3001/proyectos/cargarLogs?id=${id}`,
+    `${process.env.REACT_APP_API_URL}/proyectos/cargarLogs?id=${id}`,
     {
       method: 'GET',
       headers: {
@@ -55,7 +73,7 @@ const loadLogs = async (token, id) => {
 }
 const loadStats = async (id, token) => {
   const datos = await fetch(
-    `http://localhost:3001/estadisticas/cargarEstadisticas`,
+    `${process.env.REACT_APP_API_URL}/estadisticas/cargarEstadisticas`,
     {
       method: 'POST',
       headers: {
@@ -87,4 +105,4 @@ function downloadWeblyFile(token, proyectSelected) {
 
 }
 
-export { loadProyects, createProyect, loadLogs, downloadWeblyFile, loadStats }
+export { loadProyects, createProyect, loadLogs, downloadWeblyFile, loadStats, deleteProyect }

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Tooltip from '@mui/material/Tooltip'
 import { signup } from '../helpers/login_api'
 import { useNavigate } from 'react-router-dom'
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function SignUp({ setToken }) {
   const navigate = useNavigate()
@@ -68,6 +68,9 @@ export default function SignUp({ setToken }) {
   return (
     <div className="signup">
       <form className="signup_form_container" onSubmit={handleSubmit}>
+        <div className="signup_back">
+          <ArrowBackIcon onClick={() => navigate('/')} />
+        </div>
         <div className="signup__title">
           <h1>Crear una cuenta</h1>
           <p>¡Gracias por confiar en nosotros!</p>

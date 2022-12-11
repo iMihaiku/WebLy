@@ -5,71 +5,20 @@ import { loadStats } from '../helpers/proyects_api.js'
 import { useEffect, useState, useContext } from 'react'
 import AppContext from '../context/context.js'
 import useWebSocket from '../hooks/useWebSocket'
-const data2 = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 }
-]
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-]
+
 export default function ProyectData(proyect, token) {
   
   const [viewLocation, setViewLocation] = useState([])
   const [events, setEvents] = useState([])
   const [logs, setLogs] = useState([])
   const { lastStat } = useWebSocket(proyect.token.token, proyect.proyect.id)
-
   useEffect(() => {
 
     if (lastStat[0] !== undefined) {
       const { visitas, eventos } = lastStat[0]
       handleViewLocation(visitas)
       handleEvents(eventos)
+      handleLogs(lastStat[0])
     } 
   }, [lastStat])
 
@@ -94,18 +43,25 @@ export default function ProyectData(proyect, token) {
     eventos.forEach((item) => {
       const index = dataParsed.findIndex((element) => element.name === item.id)
       if (index === -1) {
-        dataParsed.push({ name: item.id, event: 1, avg: Math.round((1/eventos.length)*10000) })
+        dataParsed.push({ name: item.id, event: 1, avg: Math.round((1/eventos.length)*100) })
       }
       if (index !== -1) {
         dataParsed[index].event++
-        dataParsed[index].avg = Math.round((dataParsed[index].event/eventos.length)*100)
+        dataParsed[index].avg = Math.round(dataParsed[index].event/eventos.length)
       }
     })
     setEvents(dataParsed)
   }
+
+  function handleLogs(newStats) {
+    const fecha = new Date(newStats.fecha)
+    let newLog = newStats["fecha"] + newStats["ips"]
+    console.log(newLog);
+  }
   
   useEffect(() => {
     setViewLocation([])
+    setEvents([])
   }, [proyect.proyect.id])
 
   return (
@@ -143,7 +99,7 @@ export default function ProyectData(proyect, token) {
         </div>
       </div>
       <div className="proyect_log">
-        {logs && <ProyectLog logs={logs}/>}
+        {logs && <ProyectLog logs={logs} newData={events}/>}
         <div className="script"></div>
       </div>
     </>

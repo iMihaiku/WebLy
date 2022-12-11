@@ -88,6 +88,7 @@ const renderActiveShape = (props) => {
 }
 
 export default function ChartCustom2({ newData, id, token, lastStat}) {
+  console.log("Pastel actualizado");
   const [totalData, setTotaData] = useState([])
   useEffect(() => {
     loadStats(id, token).then((d1) => {
@@ -106,7 +107,7 @@ export default function ChartCustom2({ newData, id, token, lastStat}) {
         setTotaData(d2)
       }
     })
-  }, [])
+  }, [id])
 
   
   

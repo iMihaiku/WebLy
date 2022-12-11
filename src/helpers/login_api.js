@@ -1,6 +1,6 @@
 const login = async (username, password) => {
   console.log('login', username, password)
-  const datos = await fetch('http://localhost:3001/usuarios/login', {
+  const datos = await fetch(`${process.env.REACT_APP_API_URL}/usuarios/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ const login = async (username, password) => {
   return datos
 }
 const signup = async (username, password) => {
-  const datos = await fetch('http://localhost:3001/usuarios/registro', {
+  const datos = await fetch(`${process.env.REACT_APP_API_URL}/usuarios/registro`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
