@@ -17,12 +17,12 @@ export default function useWebSocket( token, id ) {
           console.log(datos);
           count > 0 ? setLastStat([datos]) : count++ 
         }
-      }, 5000)
+      }, 3000)
       setTimeout(() => {
         console.log("close");
         ws.send('disconnect')
         ws.close()
-      }, 60000)
+      }, 600000)
     }
   }, [id])
 

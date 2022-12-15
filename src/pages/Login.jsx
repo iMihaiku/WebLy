@@ -54,7 +54,7 @@ export default function Login({ setToken }) {
             <input type="password" name="password" className="inputs" />
           </div>
           <div className="login__link">
-            <Link to="/forgotpassword">¿Olvidaste tu contraseña?</Link>
+{/*             <Link to="/forgotpassword">¿Olvidaste tu contraseña?</Link> */}
           </div>
           <div className="login__form__button">
             <button type="submit">Iniciar Sesión</button>

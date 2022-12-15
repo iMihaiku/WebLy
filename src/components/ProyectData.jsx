@@ -54,14 +54,15 @@ export default function ProyectData(proyect, token) {
   }
 
   function handleLogs(newStats) {
-    const fecha = new Date(newStats.fecha)
-    let newLog = newStats["fecha"] + newStats["ips"]
+    let newLog = {ip: newStats["ips"], date: newStats["fecha"], log: "New stats loaded on proyect"}
     console.log(newLog);
+    setLogs(newLog)
   }
   
   useEffect(() => {
     setViewLocation([])
     setEvents([])
+    setLogs([])
   }, [proyect.proyect.id])
 
   return (
@@ -69,17 +70,16 @@ export default function ProyectData(proyect, token) {
       <div className="proyect_data">
         <div className="proyect_chart1">
           <div className="proyect_data_title">
-            <h1>Average View</h1>
+            <h1>Views per location</h1>
           </div>
           <div className="proyect_data_description">
             <p>
-              This chart represent the averge engangement you got in your
-              website
+            This chart represents the total and percentage visits in each relative route of the project.
             </p>
           </div>
           <div className="proyect_data_content">
             {viewLocation ? (
-              <ChartCustom2 newData={viewLocation} newDate={lastStat} token={proyect.token.token} id={proyect.proyect.id} />
+              <ChartCustom2 newData={viewLocation} token={proyect.token.token} id={proyect.proyect.id} />
             ) : (
               <div className="proyect_data_content__empty"></div>
             )}
@@ -88,10 +88,10 @@ export default function ProyectData(proyect, token) {
         </div>
         <div className="proyect_chart2">
           <div className="proyect_data_title">
-            <h1>Time Spaced View</h1>
+            <h1>Events Tracker</h1>
           </div>
           <div className="proyect_data_description">
-            <p>Here you can see the traffic of your visits per week.</p>
+            <p>Here you can see the different events occurred in the project</p>
           </div>
           <div className="proyect_data_content">
             <ChartCustom newData={events} token={proyect.token.token} id={proyect.proyect.id}/> 
@@ -99,7 +99,7 @@ export default function ProyectData(proyect, token) {
         </div>
       </div>
       <div className="proyect_log">
-        {logs && <ProyectLog logs={logs} newData={events}/>}
+        {<ProyectLog logs={logs} id={proyect.proyect.id} token={proyect.token.token}/>}
         <div className="script"></div>
       </div>
     </>

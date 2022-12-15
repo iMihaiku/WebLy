@@ -87,7 +87,7 @@ const renderActiveShape = (props) => {
   )
 }
 
-export default function ChartCustom2({ newData, id, token, lastStat}) {
+export default function ChartCustom2({ newData, id, token}) {
   console.log("Pastel actualizado");
   const [totalData, setTotaData] = useState([])
   useEffect(() => {

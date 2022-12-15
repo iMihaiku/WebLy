@@ -2,11 +2,12 @@ import '../styles/profile.css';
 import profile from '../media/user_icon.png'
 import Icon from './Icon.jsx';
 import SettingsIcon from '@mui/icons-material/Settings';
-
+import { useNavigate } from 'react-router-dom'
 export default function Profile() {
+  const navigate = useNavigate()
   const handleSettings = () => {
     localStorage.removeItem('token')
-    window.location.href = '/'
+    navigate(0);
   }
 
   return (

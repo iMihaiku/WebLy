@@ -51,7 +51,7 @@ function createLoginWindow(){
     loginWindow.webContents.openDevTools();
     loginWindow.loadURL('http://localhost:3000');
   } else {
-    loginWindow.webContents.openDevTools();
+    //loginWindow.webContents.openDevTools();
     loginWindow.loadFile(`./build/index.html`);
   }
 
